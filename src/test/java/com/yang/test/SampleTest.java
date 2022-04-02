@@ -1,0 +1,66 @@
+package com.yang.test;
+
+
+import com.yang.bean.User;
+import com.yang.mapper.UserMapper;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+@SpringBootTest
+public class SampleTest {
+
+    @Autowired
+    private UserMapper userMapper;
+
+    /**
+     * 测试查询
+     */
+
+    @Test
+    // SELECT id,username,password,email FROM user WHERE id=?
+    public void testSelectById() {
+        User user = userMapper.selectById(1);
+        System.out.println(user.toString());
+    }
+
+    @Test
+    // SELECT id,username,password,email FROM user WHERE id IN ( ? , ? )
+    public void testselectBatchIds() {
+        List<User> userList = userMapper.selectBatchIds(Arrays.asList(1, 2));
+        userList.forEach(System.out::println);
+    }
+
+    @Test
+    // SELECT id,username,password,email FROM user
+    public void testSelect() {
+        System.out.println("------selectAll method test-----");
+        List<User> userList = userMapper.selectList(null);
+        userList.forEach(System.out::println);
+    }
+
+    @Test
+    // SELECT id,username,password,email FROM user WHERE username = ?
+    public void testSelectByMap() {
+        HashMap<String, Object> users = new HashMap<>();
+        users.put("username", "yy");
+        List<User> userList = userMapper.selectByMap(users);
+        userList.forEach(System.out::println);
+    }
+
+    // 测试插入
+    @Test
+    public void testInsert() {
+        User user = new User();
+        user.setUsername("peter");
+        user.setPassword("123");
+        user.setEmail("qq.com");
+        int insert = userMapper.insert(user);
+        List<User> userList = userMapper.selectList(null);
+        userList.forEach(System.out::println);
+    }
+}

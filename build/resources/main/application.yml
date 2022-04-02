@@ -1,0 +1,19 @@
+server:
+  port: 8030
+
+spring:
+  datasource:
+    username: root
+    password: root123
+    url: jdbc:mysql://39.100.27.239:3306/qa_platform?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# Logger Config
+logging:
+  level:
+    com.yang: debug
+
+# mybatis-plus输出日志
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout
