@@ -1,11 +1,19 @@
 package com.yang.test;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yang.bean.QaReport;
 import com.yang.bean.User;
+import com.yang.mapper.QaReportMapper;
 import com.yang.mapper.UserMapper;
+import com.yang.response.ResultVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,6 +24,8 @@ public class SampleTest {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private QaReportMapper qaReportMapper;
 
     /**
      * 测试查询
@@ -62,5 +72,24 @@ public class SampleTest {
         int insert = userMapper.insert(user);
         List<User> userList = userMapper.selectList(null);
         userList.forEach(System.out::println);
+    }
+
+    @Test
+    public void testQaReport() {
+        QaReport qaReport = new QaReport();
+        qaReport.setQa("yy");
+        int insert = qaReportMapper.insert(qaReport);
+        List<QaReport> qaReports = qaReportMapper.selectList(null);
+        qaReports.forEach(System.out::println);
+    }
+
+    @Test
+    public void testPage() {
+        System.out.println("-------------------------------------");
+        QueryWrapper<QaReport> wrapper = new QueryWrapper<>();
+        wrapper.eq("qa", "yy");
+        Page<QaReport> page = new Page<>(1, 2);
+        qaReportMapper.selectPage(page,null);
+        System.out.println(new ResultVO<>(page));
     }
 }
