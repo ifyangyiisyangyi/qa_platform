@@ -1,7 +1,5 @@
 package com.yang.controllers;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.bean.QaReport;
 import com.yang.request.PageQo;
 import com.yang.response.ResultVO;
@@ -21,5 +19,23 @@ public class QaReportController {
     @PostMapping(value = "list")
     public ResultVO<?> list(@RequestBody PageQo pageQo) {
         return new ResultVO<>(qaReportService.list(pageQo));
+    }
+
+    // 新增
+    @PostMapping(value = "add")
+    public ResultVO<?> add(@RequestBody QaReport qaReport) {
+        return new ResultVO<>(qaReportService.add(qaReport));
+    }
+
+    //删除
+    @GetMapping(value = "del")
+    public ResultVO<?> del(@RequestParam Integer id) {
+        return new ResultVO<>(qaReportService.del(id));
+    }
+
+    // 更新
+    @PostMapping(value = "update")
+    public  ResultVO<?> update(@RequestBody QaReport qaReport) {
+        return new ResultVO<>(qaReportService.update(qaReport));
     }
 }

@@ -12,4 +12,7 @@ import java.util.List;
 public interface QaReportService{
 
     Page<QaReport> list(PageQo pageQo);
+    QaReport add(QaReport qaReport);
+    Boolean del(Integer id);
+    QaReport update(QaReport qaReport);
 }

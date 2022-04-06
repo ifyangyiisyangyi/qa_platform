@@ -15,6 +15,10 @@ public class APIException extends RuntimeException {
         this(ResultCode.FAILED);
     }
 
+    public APIException(String msg) {
+        this(ResultCode.FAILED, msg);
+    }
+
     public APIException(ResultCode failed) {
         this.code = failed.getCode();
         this.msg = failed.getMsg();

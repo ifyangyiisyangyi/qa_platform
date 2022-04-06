@@ -91,5 +91,7 @@ public class SampleTest {
         Page<QaReport> page = new Page<>(1, 2);
         qaReportMapper.selectPage(page,null);
         System.out.println(new ResultVO<>(page));
+
+        System.out.println(qaReportMapper.selectById(3));
     }
 }
