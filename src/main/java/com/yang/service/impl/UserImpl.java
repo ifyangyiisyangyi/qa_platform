@@ -11,6 +11,9 @@ import com.yang.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * @Auth yangyi
@@ -37,7 +40,7 @@ public class UserImpl implements UserService {
             throw new APIException(ResultCode.USER_NOT_EXIST);
         }
         // 判断密码是否正确
-        if (!loginQo.getPassword().equals(user.getPassword())) {
+        if (!DigestUtils.md5DigestAsHex(loginQo.getPassword().getBytes(StandardCharsets.UTF_8)).equals(user.getPassword())) {
             throw new APIException(ResultCode.USER_LOGIN_FAIL);
         }
         log.info(user.getUsername() + "登录成功");
@@ -56,7 +59,8 @@ public class UserImpl implements UserService {
         }
         User user = new User();
         user.setUsername(registerQo.getUsername());
-        user.setPassword(registerQo.getPassword());
+        // 密码md5加密
+        user.setPassword(DigestUtils.md5DigestAsHex(registerQo.getPassword().getBytes(StandardCharsets.UTF_8)));
         if(userMapper.insert(user) > 0) {
             return user;
         }

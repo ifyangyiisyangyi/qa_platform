@@ -12,8 +12,6 @@ import com.yang.response.ResultVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -93,5 +91,11 @@ public class SampleTest {
         System.out.println(new ResultVO<>(page));
 
         System.out.println(qaReportMapper.selectById(3));
+    }
+
+    @Test
+    // 测试逻辑删除
+    public void testDelete() {
+        userMapper.deleteById(12);
     }
 }

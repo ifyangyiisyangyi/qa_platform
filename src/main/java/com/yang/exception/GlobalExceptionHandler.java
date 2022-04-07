@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(APIException.class)
 //    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResultVO<Object> APIExceptionHandler(APIException e) {
-        log.error("api异常");
+        log.error("自定义异常");
         return new ResultVO<>(e);
     }
 

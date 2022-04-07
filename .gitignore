@@ -2,8 +2,9 @@
 *.class
 *.idea
 *.gradle
-build
 
+*/build/
+*/test/
 # Log file
 *.log
 
