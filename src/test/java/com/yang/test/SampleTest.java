@@ -4,8 +4,10 @@ package com.yang.test;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yang.bean.Link;
 import com.yang.bean.QaReport;
 import com.yang.bean.User;
+import com.yang.mapper.LinkMapper;
 import com.yang.mapper.QaReportMapper;
 import com.yang.mapper.UserMapper;
 import com.yang.response.ResultVO;
@@ -24,6 +26,8 @@ public class SampleTest {
     private UserMapper userMapper;
     @Autowired
     private QaReportMapper qaReportMapper;
+    @Autowired
+    private LinkMapper linkMapper;
 
     /**
      * 测试查询
@@ -87,7 +91,7 @@ public class SampleTest {
         QueryWrapper<QaReport> wrapper = new QueryWrapper<>();
         wrapper.eq("qa", "yy");
         Page<QaReport> page = new Page<>(1, 2);
-        qaReportMapper.selectPage(page,null);
+        qaReportMapper.selectPage(page, null);
         System.out.println(new ResultVO<>(page));
 
         System.out.println(qaReportMapper.selectById(3));
@@ -97,5 +101,11 @@ public class SampleTest {
     // 测试逻辑删除
     public void testDelete() {
         userMapper.deleteById(12);
+    }
+
+    @Test
+    public void testLink() {
+        List<Link> links = linkMapper.selectList(null);
+        links.forEach(System.out::println);
     }
 }

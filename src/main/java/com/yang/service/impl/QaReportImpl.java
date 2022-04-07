@@ -59,6 +59,5 @@ public class QaReportImpl implements QaReportService {
         }
         return null;
     }
-    // 按id查询
 
 }
