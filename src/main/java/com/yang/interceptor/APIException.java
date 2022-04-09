@@ -1,4 +1,4 @@
-package com.yang.exception;
+package com.yang.interceptor;
 
 import com.yang.response.ResultCode;
 import lombok.Getter;

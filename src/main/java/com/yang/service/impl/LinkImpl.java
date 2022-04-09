@@ -1,5 +1,6 @@
 package com.yang.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.bean.Link;
 import com.yang.mapper.LinkMapper;
@@ -24,8 +25,9 @@ public class LinkImpl implements LinkService {
     @Override
     public Page<Link> list(PageQo pageQo) {
         Page<Link> page = new Page<>(pageQo.getPageNum(), pageQo.getPageSize());
-        linkMapper.selectPage(page, null);
-        return page;
+        QueryWrapper<Link> wrapper = new QueryWrapper<>();
+        wrapper.orderByAsc("id");
+        return linkMapper.selectPage(page, wrapper);
     }
 
     // 新增

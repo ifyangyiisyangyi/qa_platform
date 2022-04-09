@@ -2,7 +2,6 @@ package com.yang.test;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.bean.Link;
 import com.yang.bean.QaReport;
@@ -87,7 +86,7 @@ public class SampleTest {
 
     @Test
     public void testPage() {
-        System.out.println("-------------------------------------");
+        System.out.println("-------------------------------------3534543");
         QueryWrapper<QaReport> wrapper = new QueryWrapper<>();
         wrapper.eq("qa", "yy");
         Page<QaReport> page = new Page<>(1, 2);

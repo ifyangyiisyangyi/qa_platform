@@ -2,7 +2,7 @@ package com.yang.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.bean.QaReport;
-import com.yang.exception.APIException;
+import com.yang.interceptor.APIException;
 import com.yang.mapper.QaReportMapper;
 import com.yang.request.PageQo;
 import com.yang.service.QaReportService;

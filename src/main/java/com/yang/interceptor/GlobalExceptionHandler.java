@@ -1,4 +1,4 @@
-package com.yang.exception;
+package com.yang.interceptor;
 
 import com.yang.response.ResultCode;
 import com.yang.response.ResultVO;
@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(APIException.class)
 //    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResultVO<Object> APIExceptionHandler(APIException e) {
-        log.error("自定义异常");
+        log.error(e.getMsg());
         return new ResultVO<>(e);
     }
 

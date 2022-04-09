@@ -1,6 +1,6 @@
 package com.yang.response;
 
-import com.yang.exception.APIException;
+import com.yang.interceptor.APIException;
 import lombok.Data;
 
 @Data

@@ -1,5 +1,6 @@
 package com.yang.controllers;
 
+import com.yang.annotation.LoginRequired;
 import com.yang.request.LoginQo;
 import com.yang.request.RegisterQo;
 import com.yang.response.ResultVO;
