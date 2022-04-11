@@ -1,7 +1,7 @@
 # Docker image for springboot file run
 # VERSION 0.0.1
 # 基础镜像使用java
-FROM java:14
+FROM openjdk:14
 # 作者
 MAINTAINER yangyi <yangyi7351598@gmail.com>
 # VOLUME 指定了临时文件目录为/tmp。
