@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+
+group "org.yang"
+version "1.0-SNAPSHOT"
+sourceCompatibility = 1.14
+
+
+/**
+ * 指定所使用的仓库，mavenCentral()表示使用中央仓库
+ */
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    /**
+     * compileOnly— 对于编译生产代码所必需但不应成为运行时类路径的一部分的依赖项
+
+     implementation(取代compile) — 用于编译和运行时
+
+     runtimeOnly（取代runtime）——仅在运行时使用，不用于编译
+
+     testCompileOnly— 与compileOnly测试相同
+
+     testImplementation— 测试等效于implementation
+
+     testRuntimeOnly— 测试等效于runtimeOnly
+     */
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    implementation(
+            'org.springframework.boot:spring-boot-starter-web:2.6.5',
+            'com.baomidou:mybatis-plus-boot-starter:3.5.1',
+            'com.baomidou:mybatis-plus-boot-starter-test:3.5.1',
+            'com.alibaba:druid-spring-boot-starter:1.2.8',
+            'org.springframework.boot:spring-boot-starter-validation:2.6.5',  //参数校验
+            'mysql:mysql-connector-java:8.0.28',
+            'org.projectlombok:lombok:1.18.22',
+            'org.springframework.boot:spring-boot-starter-web-services:2.6.5',
+            'org.apache.commons:commons-lang3:3.12.0',  // java utils
+//            'commons-codec:commons-codec:20041127.091804', // 常见的编码解码工具Base64、MD5、Hex、SHA1、DES等
+            'com.auth0:java-jwt:3.19.1' // jwt  用户鉴权
+    )
+    annotationProcessor(
+            "org.projectlombok:lombok:1.18.22",
+    )
+}
+
+//test {
+//    useJUnitPlatform()
+//}
+
+
+

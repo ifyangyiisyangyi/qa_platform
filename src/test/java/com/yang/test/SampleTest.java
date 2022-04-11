@@ -35,7 +35,7 @@ public class SampleTest {
     @Test
     // SELECT id,username,password,email FROM user WHERE id=?
     public void testSelectById() {
-        User user = userMapper.selectById(1);
+        User user = userMapper.selectById(11);
         System.out.println(user.toString());
     }
 
@@ -64,16 +64,16 @@ public class SampleTest {
     }
 
     // 测试插入
-    @Test
-    public void testInsert() {
-        User user = new User();
-        user.setUsername("peter");
-        user.setPassword("123");
-        user.setEmail("qq.com");
-        int insert = userMapper.insert(user);
-        List<User> userList = userMapper.selectList(null);
-        userList.forEach(System.out::println);
-    }
+//    @Test
+//    public void testInsert() {
+//        User user = new User();
+//        user.setUsername("peter");
+//        user.setPassword("123");
+//        user.setEmail("qq.com");
+//        int insert = userMapper.insert(user);
+//        List<User> userList = userMapper.selectList(null);
+//        userList.forEach(System.out::println);
+//    }
 
     @Test
     public void testQaReport() {
