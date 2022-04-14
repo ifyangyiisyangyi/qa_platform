@@ -1,11 +1,15 @@
 package com.yang.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.bean.Link;
+import com.yang.bean.Recode;
 import com.yang.mapper.LinkMapper;
 import com.yang.request.PageQo;
 import com.yang.service.LinkService;
+import com.yang.service.RecodeService;
+import com.yang.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +24,8 @@ import org.springframework.stereotype.Service;
 public class LinkImpl implements LinkService {
     @Autowired
     private LinkMapper linkMapper;
+    @Autowired
+    private RecodeService recodeService;
 
     // 分页查询
     @Override

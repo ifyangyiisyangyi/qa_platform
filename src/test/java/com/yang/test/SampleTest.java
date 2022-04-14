@@ -1,8 +1,19 @@
 package com.yang.test;
 
 
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.generator.AutoGenerator;
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
+import com.baomidou.mybatisplus.generator.config.GlobalConfig;
+import com.baomidou.mybatisplus.generator.config.PackageConfig;
+import com.baomidou.mybatisplus.generator.config.StrategyConfig;
+import com.baomidou.mybatisplus.generator.config.po.TableFill;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
+import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.yang.bean.Link;
 import com.yang.bean.QaReport;
 import com.yang.bean.User;
@@ -14,6 +25,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -63,17 +75,6 @@ public class SampleTest {
         userList.forEach(System.out::println);
     }
 
-    // 测试插入
-//    @Test
-//    public void testInsert() {
-//        User user = new User();
-//        user.setUsername("peter");
-//        user.setPassword("123");
-//        user.setEmail("qq.com");
-//        int insert = userMapper.insert(user);
-//        List<User> userList = userMapper.selectList(null);
-//        userList.forEach(System.out::println);
-//    }
 
     @Test
     public void testQaReport() {
@@ -106,5 +107,65 @@ public class SampleTest {
     public void testLink() {
         List<Link> links = linkMapper.selectList(null);
         links.forEach(System.out::println);
+    }
+
+    /**
+     * mabatisplus代码自动生成器
+     */
+    @Test
+    public void testAutoGenerate() {
+        // 构建代码自动生成器对象
+        AutoGenerator mpg = new AutoGenerator();
+        // 配置策略
+        // 1. 全局配置
+        GlobalConfig gc = new GlobalConfig();
+        String projectPath = System.getProperty("user.dir"); // /Users/yangyi/Documents/yy_code/qa_platform
+        gc.setOutputDir(projectPath + "/src/main/java");
+        gc.setAuthor("yy");
+        gc.setOpen(false);
+        gc.setFileOverride(false);
+        gc.setServiceName("%sService");
+        gc.setIdType(IdType.AUTO);
+        gc.setDateType(DateType.ONLY_DATE);
+//        gc.setSwagger2(true);
+        mpg.setGlobalConfig(gc);
+
+        //2. 设置数据源
+        DataSourceConfig dsc = new DataSourceConfig();
+        dsc.setUrl("jdbc:mysql://39.100.27.239:3306/qa_platform?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+        dsc.setUsername("root");
+        dsc.setPassword("root123");
+        dsc.setDbType(DbType.MYSQL);
+        mpg.setDataSource(dsc);
+
+        //3. 包的配置  生成的代码放在项目的位置
+        PackageConfig pc = new PackageConfig();
+        pc.setParent("com.yang");
+        pc.setEntity("bean");
+        pc.setMapper("mapper");
+        pc.setService("service");
+        pc.setController("controller");
+        mpg.setPackageInfo(pc);
+
+        //4. 策略配置
+        StrategyConfig strategy = new StrategyConfig();
+        strategy.setInclude(("recode").split(","));
+        strategy.setNaming(NamingStrategy.underline_to_camel);
+        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
+        strategy.setEntityLombokModel(true);        // 自动lombok，是否使用lombok完成Entity实体标注Getting Setting ToString 方法；
+        strategy.setLogicDeleteFieldName("deleted"); // 逻辑删除
+
+        // 自动填充配置
+        TableFill gmtCreate = new TableFill("create_time", FieldFill.INSERT);//创建时间
+        TableFill gmtModified = new TableFill("update_time",
+                FieldFill.INSERT_UPDATE);//修改时间
+        ArrayList<TableFill> tableFills = new ArrayList<>();
+        tableFills.add(gmtCreate);
+        tableFills.add(gmtModified);
+        strategy.setTableFillList(tableFills);
+
+        mpg.setStrategy(strategy);
+        mpg.execute();
     }
 }

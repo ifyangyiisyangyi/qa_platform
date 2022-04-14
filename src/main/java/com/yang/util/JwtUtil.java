@@ -6,6 +6,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 
@@ -17,14 +18,16 @@ import java.util.Date;
 public class JwtUtil {
 
     // token一天后过期
-    public static final long EXPIRE_TIME = 1000 * 60 * 60 * 24;
+//    public static final long EXPIRE_TIME = 1000 * 60 * 60 * 24;
+    @Value("${system.expire-time}")
+    public static long expire_time;
     // 秘钥
     public static final String SECRET = "ifyangyiisyangyi";
 
     // 生成token
     public static String sign(Integer userId) {
         // 现在系统时间+一天
-        Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
+        Date date = new Date(System.currentTimeMillis() + expire_time);
         // 加密
         Algorithm algorithm = Algorithm.HMAC256(SECRET);
         // 附带user信息

@@ -31,8 +31,8 @@ dependencies {
 
      testRuntimeOnly— 测试等效于runtimeOnly
      */
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.1'
     implementation(
             'org.springframework.boot:spring-boot-starter-web:2.6.5',
             'com.baomidou:mybatis-plus-boot-starter:3.5.1',
@@ -44,16 +44,18 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-web-services:2.6.5',
             'org.apache.commons:commons-lang3:3.12.0',  // java utils
 //            'commons-codec:commons-codec:20041127.091804', // 常见的编码解码工具Base64、MD5、Hex、SHA1、DES等
-            'com.auth0:java-jwt:3.19.1' // jwt  用户鉴权
+            'com.auth0:java-jwt:3.19.1', // jwt  用户鉴权
+            'com.baomidou:mybatis-plus-generator:3.3.0', // 代码生成器
+            'org.apache.velocity:velocity-engine-core:2.3', // 模板引擎 依赖，MyBatis-Plus 支持 Velocity
     )
     annotationProcessor(
             "org.projectlombok:lombok:1.18.22",
     )
 }
 
-//test {
-//    useJUnitPlatform()
-//}
+test {
+    useJUnitPlatform()
+}
 
 
 
